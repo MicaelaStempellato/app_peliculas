@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+    <p>Resultados para "<%= busqueda %>"</p>
+
+    <%if (movieResults != ""){ %>
+
+    <% movieResults.forEach(peli => {  %>
+            <a href="/movies/detail/<%=peli.id%>">
+                <h3><%=peli.title%></h3>
+            </a>
+                <p><%=peli.length%> minutos</p>
+                <% }) %> 
+        <%} else {%>
+            <h3>No se encontraron reesultados para "<%= busqueda %>"</h3>
+        <% } %> 
+    </div>
+  </body>
+</html>

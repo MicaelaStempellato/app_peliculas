@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor crear">
+    <h1><%= title %></h1>
+    <p>Acá podrás editar tu peli</p>
+
+    <div class="errores">
+        <% if(typeof errors != 'undefined'){ %>
+            <p class="errorTitle">ERROR</p>
+            <ul>
+                <% for(let i=0; i<errors.length; i++){ %>
+                    <li style="font-size: 13px"><%= errors[i].msg %> </li> 
+                <% } %> 
+            </ul> 
+            <% } %> 
+        </div>
+
+
+    <form class="createForm" action="/movies/edit/<%=pelicula.id%>?_method=PUT" method="POST">
+    <input type="text" name="title" placeholder="Título" required minlength="5" maxlength="120" value="<%= typeof old != "undefined" ? old.title : pelicula.title %>">
+    <input type="text" name="rating" placeholder="Rating" required value="<%= typeof old != "undefined" ? old.rating : pelicula.rating %>">
+    <input type="text" name="awards" placeholder="Premios" required value="<%= typeof old != "undefined" ? old.awards : pelicula.awards %>">
+    <input type="date" value="<%= typeof old != "undefined" ? oldfecha : fecha %>" name="release_date" placeholder="Fecha de estreno" required>
+    <input type="text" name="length" placeholder="Duración en minutos" required value="<%= typeof old != "undefined" ? old.length : pelicula.length %>">
+    <select name="genre_id" id="" required>
+        <option value="">Género</option>
+        <% generos.forEach(genero => { %>
+        <%if (typeof old != "undefined"){%>
+            <%if (old.genre_id == genero.id){%>
+            <option value="<%=genero.id%>" selected><%=genero.name%></option>
+            <%}else{%>
+                <option value="<%=genero.id%>" ><%=genero.name%></option>
+            <%}%>
+       <%}else%>
+            <%if (pelicula.genre_id == genero.id){%>
+            <option value="<%=genero.id%>" selected><%=genero.name%></option>
+            <%}else{%>
+            <option value="<%=genero.id%>" ><%=genero.name%></option>
+            <%}%>
+        <%})%>
+    </select>
+    <button type="submit">EDITAR</button>
+    </form>
+    </div>
+  </body>
+</html>

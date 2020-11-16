@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+    <p>Acá encontrarás <%= title %></p>
+
+    <% recommendedMovies.forEach(peli => {  %>
+            <a href="/movies/detail/<%=peli.id%>">
+                <h3><%=peli.title%></h3>
+            </a>
+             
+        <% }) %> 
+    </div>
+  </body>
+</html>

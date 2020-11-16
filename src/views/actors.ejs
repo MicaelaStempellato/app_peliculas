@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+    <section class="titulos">
+    <p class="linkTitle">Acá encontrarás <%= title %></p>
+    <a href="/movies" class="linkList"><p>Ver todas las películas</p></a>
+</section>
+
+    <% actors.forEach(actor => {  %>
+            <a href="/movies/actor/<%=actor.id%>">
+                <h3><%=actor.first_name%> <%=actor.last_name%></h3>
+            </a>
+            <% if( actor.rating  == null){ %> 
+                <p>No tiene rating</p>
+                <% }else{ %> 
+                <p>Rating: <%= actor.rating %> ☆</p>
+                <% } %> 
+        <% }) %> 
+    </div>
+  </body>
+</html>

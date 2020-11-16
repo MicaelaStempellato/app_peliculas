@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor crear">
+    <h1><%= title %></h1>
+
+    <div class="errores">
+        <% if(typeof errors != 'undefined'){ %>
+            <p class="errorTitle">ERROR</p>
+            <ul>
+                <% for(let i=0; i<errors.length; i++){ %>
+                    <li style="font-size: 13px"><%= errors[i].msg %> </li> 
+                <% } %> 
+            </ul> 
+            <% } %> 
+        </div>
+
+
+    <form class="createForm" action="/movies/linkActor" method="POST">
+    <select name="movie_id" id="" required>
+        <option value="">Película</option>
+        <% movies.forEach(movie => { %>
+        <%if(typeof old != "undefined"){%>
+            <%if(old.movie_id == movie.id){%>
+            <option value="<%=movie.id%>" selected><%=movie.title%></option>
+            <%}else{%>
+            <option value="<%=movie.id%>" ><%=movie.title%></option>
+            <%}%>
+        <%}else{%>
+        <option value="<%=movie.id%>"><%=movie.title%></option>
+        <%}%>
+        <%})%>
+    </select>
+    <select name="actor_id" id="" required>
+        <option value="">Actor</option>
+        <% actors.forEach(actor => { %>
+        <%if(typeof old != "undefined"){%>
+            <%if(old.actor_id == actor.id){%>
+            <option value="<%=actor.id%>" selected><%=actor.first_name%> <%=actor.last_name%></option>
+            <%}else{%>
+            <option value="<%=actor.id%>" ><%=actor.first_name%> <%=actor.last_name%></option>
+            <%}%>
+        <%}else{%>
+        <option value="<%=actor.id%>"><%=actor.first_name%> <%=actor.last_name%></option>
+        <%}%>
+        <%})%>
+    </select>
+    <button type="submit">AGREGAR</button>
+    </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+
+    <section></section>
+   <h2><%= actor.first_name %> <%= actor.last_name %></h2>
+   <%if(actor.fav_movie != undefined){%>
+   <h3 class="inline">Su peli favorita: </h3><h3 class="inline"><a href="/movies/detail/<%=actor.fav_movie.id%>"><%=actor.fav_movie.title%></a></h3>
+   <%}else{%>
+    <h3>No tiene peli favorita</h3>
+    <%}%>
+   <h3>Rating: <%=actor.rating%> ☆</h3>
+   <h3>Las pelis de este actor:</h3>
+   <%for (let i = 0; i < actor.peliculas.length; i++){%>
+    <h3><a href="/movies/detail/<%=actor.peliculas[i].id%>"><%=actor.peliculas[i].title%></a></h3>
+    <%}%>
+
+  </div>
+  </body>
+</html>

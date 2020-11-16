@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+    <section class="titulos">
+    <p class="linkTitle">Acá encontrarás <%= title %></p>
+    <a href="/movies/listActors" class="linkList"><p>Ver todos los actores</p></a>
+  </section>
+
+    <% movies.forEach(peli => {  %>
+            <a href="/movies/detail/<%=peli.id%>">
+                <h3><%=peli.title%></h3>
+            </a>
+            <% if( peli.length  == null){ %> 
+                <p>No tiene duración especificada</p>
+                <% }else{ %> 
+                <p><%= peli.length %> minutos</p>
+                <% } %> 
+        <% }) %> 
+    </div>
+  </body>
+</html>

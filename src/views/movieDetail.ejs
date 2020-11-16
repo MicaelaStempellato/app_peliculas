@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+    <p>Acá encontrarás <%= title %></p>
+
+    <section></section>
+   <h2><%= movie.title %> </h2>
+   <h3>Puntaje: <%= movie.rating %> ☆</h3>
+   <h3>Premios: <%= movie.awards %></h3>
+   <% if( movie.length  == null){ %> 
+    <h3>No tiene duración especificada</h3>
+    <% }else{ %> 
+    <h3>Duración: <%= movie.length %> minutos</h3>
+    <% } %> 
+   <h3>Fue estrenada en <%= fecha %> </h3>
+   <%if(movie.genero){%>
+   <h3>Género: <a href="/movies/genero/<%=movie.genero.id%>"><%=movie.genero.name%></a></h3>
+   <%}else{%>
+    <h3>No tiene género</h3>
+    <%}%>
+    <h3>Actores:</h3>
+    <%for (let i = 0; i < movie.actores.length; i++){%>
+      <h3><a href="/movies/actor/<%=movie.actores[i].id%>"><%=movie.actores[i].first_name%> <%=movie.actores[i].last_name%></a></h3>
+      <%}%>
+  </section>
+
+   <section class="botonesD">
+     <a href="/movies/edit/<%=movie.id%>" class="botonModificarMargen"><button class="botonDetail botonModificar">MODIFICAR</button></a>
+     <form action="/movies/delete/<%=movie.id%>?_method=DELETE" method="POST"><button class="botonDetail botonBorrar">BORRAR</button></form>
+   </section>
+
+  </div>
+  </body>
+</html>

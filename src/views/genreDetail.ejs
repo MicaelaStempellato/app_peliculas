@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/head') %>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="contenedor">
+    <h1><%= title %></h1>
+
+    <section></section>
+   <h2>Nombre: <%= genero.name %> </h2>
+   <h2>Las pelis de este género:</h2>
+   <%for (let i = 0; i < genero.peliculas.length; i++){%>
+    <h3><a href="/movies/detail/<%=genero.peliculas[i].id%>"><%=genero.peliculas[i].title%></a></h3>
+    <%}%>
+
+  </div>
+  </body>
+</html>
